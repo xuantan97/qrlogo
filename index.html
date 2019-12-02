@@ -1,66 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<!--
-   QR-Logo: http://qrlogo.kaarposoft.dk
+    <!--
+       QR-Logo: http://qrlogo.kaarposoft.dk
 
-   Copyright (C) 2011-2018 Henrik Kaare Poulsen
+       Copyright (C) 2011-2018 Henrik Kaare Poulsen
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+         http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+    -->
 
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
-	<script type="text/javascript" src="modernizr.js"></script>
-	<script type="text/javascript" src="common.js"></script>
-	<script type="text/javascript" src="reedsolomon.js"></script>
-	<script type="text/javascript" src="qrcodedecode.js"></script>
-	<script type="text/javascript" src="qrlogo.js"></script>
-	<script type="text/javascript" src="color.js"></script>
-	<script type="text/javascript" src="jscolor.js"></script>
+    <script type="text/javascript" src="modernizr.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="reedsolomon.js"></script>
+    <script type="text/javascript" src="qrcodedecode.js"></script>
+    <script type="text/javascript" src="qrencode.js"></script>
+    <script type="text/javascript" src="jscolor.js"></script>
 
-	<link rel="StyleSheet" type="text/css" href="default.css">
-	<link rel="StyleSheet" type="text/css" href="qrlogo.css">
+    <link rel="StyleSheet" type="text/css" href="default.css">
+    <link rel="shortcut icon" href="favicon.ico" />
 
-	<link rel="shortcut icon" href="favicon.ico" />
-
-	<title>QR-Logo</title>
+    <title>QR Encode</title>
 
 </head>
 
-<body onload="qrlogo_onload();">
+<body onload="qrencode_onload();">
 
     <div class="nav clearfix">
         <ul>
-            <li class="selected">QR-Logo
-            <li><a href="qrblend.html">Blend</a>
-            <li><a href="qrencode.html">Encode</a>
-            <li><a href="qrdecode.html">Decode</a>
-            <li><a href="about.html">About</a>
+            <li class="selected">Tạo mã QR
+            <li><a href="qrlogo.html">QR-Logo</a>
         </ul>
     </div>
 
     <div class="section">
-        <h1>QR-Logo</h1>
-        QR-Logo can embed your logo into a <a href="http://en.wikipedia.org/wiki/QRcode">QR Code</a>.
-        <p>QR-Logo is pure JavaScript, so it runs in your own browser.
-
-	<h3>Examples</h3>
-	<img src="testpics/qr_logo_01.png" alt="http://qrlogo.kaarposoft.dk">
-	<img src="testpics/qr_kaarpo.png" alt="http://www.kaarpo.dk">
-	<img src="testpics/qr_kaarpo45.png" alt="http://www.kaarpo.dk">
-	<img src="testpics/qr_firefox.png" alt="http://www.mozilla.com/firefox/">
+        <h1>Tạo mã QR</h1>
+        Cách tạo mã:
+        <ol>
+            <li>Nhập đường link form vào ô Text:</li>
+            <li>Chọn màu nền của mã ở ô "Màu nền"</li>
+            <li>Chọn màu của mã QR ở ô "Màu mã QR"</li>
+            <li>Nhấn chọn "Tạo mã QR"</li>
+            <li>Chuột phải ở ô mã QR đã được tạo, nhấn "Save image as..." (Lưu hình ảnh dạng)</li>
+        </ol>
     </div>
 
     <div id="nojs" class="jserror">
@@ -81,71 +76,76 @@
 
         <div class="section">
 
-            <h1>QR-Logo Generator</h1>
+            <h1>Tạo mã QR</h1>
 
-            <table class="table_borders"><tr>
-                <td>Upload logo:<br>
-                    <input type="file" id="qrlogo_files" name="files[]" onchange="on_logo_file_upload(event);"/></td>
-                <td rowspan="2"><canvas width="10" height="10" id="qrlogo_canvas"></canvas></td>
-            </tr><tr>
-                <td>Text:<br>
-                    <textarea id="qrlogo_text" rows="10" cols="40">http://qrlogo.kaarposoft.dk</textarea><br>
-                    <select id="qrlogo_crlf">
-                        <option value="raw">No line-separator translation</option>
-                        <option value="lf">Use LF (line feed) as line-separator</option>
-                        <option value="crlf">Use CRLF (carriage return plus line feed) as line-separator</option>
-                        <option value="cr">Use CR (carriage return) as line-separator</option>
-                    </select>
-                </td>
-            </tr><tr>
-                <td>Background color:<br>
-                    <input id="qrlogo_bg_color" class="jscolor {pickerMode:'HSV'}" value="F9F9FF"></td>
-                <td><input id="qrlogo_debug_checkbox" type="checkbox">Produce debug output</td>
-            </tr><tr>
-                <td>Module color:<br>
-                    <input id="qrlogo_module_color" class="jscolor {pickerMode:'HVS'}" value="4C0C0C"></td>
-                <td></td>
-            </tr></table>
+            <table>
+                <tr>
+                    <td colspan="2">Text:<br>
+                        <textarea id="qrlogo_text" rows="10" cols="40">http://qrlogo.kaarposoft.dk</textarea><br>
+                        <select id="qrlogo_crlf" hidden>
+                            <option value="raw">No line-separator translation</option>
+                            <option value="lf">Use LF (line feed) as line-separator</option>
+                            <option value="crlf">Use CRLF (carriage return plus line feed) as line-separator</option>
+                            <option value="cr">Use CR (carriage return) as line-separator</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Màu nền:<br>
+                        <input id="qrlogo_bg_color" class="jscolor {pickerMode:'HSV'}" value="F9F9FF"></td>
+                    <td hidden><input id="qrlogo_debug_checkbox" type="checkbox">Produce debug output</td>
+                </tr>
+                <tr>
+                    <td>Màu mã QR:<br>
+                        <input id="qrlogo_module_color" class="jscolor {pickerMode:'HVS'}" value="4C0C0C">
+                    </td>
+                    <td hidden><label>Error Correction:
+                            <select id="qrlogo_errorcorrection">
+                                <option value="1">Level L (7%)</option>
+                                <option value="0">Level M (15%)</option>
+                                <option value="3">Level Q (25%)</option>
+                                <option value="2" selected>Level H (30%)</option>
+                            </select>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td hidden><label>Pixels per module: <select id="qrlogo_pixpermodule">
+                                <option value="10">10</option>
+                            </select>
+                        </label></td>
+                    <td hidden><label>Text mode:
+                            <select id="qrlogo_mode">
+                                <option value="4" selected>8bit</option>
+                                <option value="2">Alphanumeric</option>
+                                <option value="1">Numeric</option>
+                            </select>
+                        </label>
+                    </td>
+                </tr>
+            </table>
 
         </div>
         <div class="buttons">
-                    <button type="button" id="qrlogo_start" onclick="qrlogo_onstart();" disabled="disabled">Generate QR Logo</button>
-                    <button type="button" id="qrlogo_stop" onclick="qrlogo_onstop();" disabled="disabled">Stop</button>
+            <button type="button" onclick="qrencode_onencode();">Tạo mã QR</button>
         </div>
 
     </form>
 
 
-    <div id="div_current" class="section" style="display:none">
-        <h2>Current logo</h2>
-        Generating QR Logo <b>#<span id="span_logo_i">0</span></b> of <b>#<span id="span_logo_n">0</span></b>
-        <div id="div_current_qrlogo">
-        </div>
-    </div>
-
-    <div id="div_best" style="display:none">
-        <h1 id="h_best_qrlogos">Best logos</h1>
-        <div id="div_best_qrlogos">
-        <table><tr>
-            <td><div class="section"><h2>Excellent</h2><div id="div_best_qrlogos_4"></div></div></td>
-            <td><div class="section"><h2>Good</h2><div id="div_best_qrlogos_3"></div></div></td>
-            <td><div class="section"><h2>Fair</h2><div id="div_best_qrlogos_2"></div></div></td>
-            <td><div class="section"><h2>Poor</h2><div id="div_best_qrlogos_1"></div></div></td>
-        </tr></table>
-        </div>
+    <div id="div_encoded" class="section" style="display:none">
+        <h2>Mã QR code đã được tạo: </h2>
+        <p hidden>Version: <span id="qrlogo_version"></span></p>
+        <canvas id="qrlogo_canvas"></canvas>
+        <p hidden><a href="#" onclick="qrencode_download();">Download QR code</a></p>
     </div>
 
     <div id="div_debug" class="section" style="display:none">
-        <h2>Debug Output</h2>
+        <h2>Debug output</h2>
         <div id="div_debug_output">
         </div>
     </div>
 
-    <div id="div_debug_detailed" class="section" style="display:none">
-        <h2>Detailed Debug Output</h2>
-        <div id="div_debug_detailed_output">
-        </div>
-    </div>
-
 </body>
+
 </html>
